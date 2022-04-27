@@ -17,10 +17,12 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             MoveToCursor();
         }
+
+        UpdateAnimator();
         
     }
 
@@ -40,6 +42,23 @@ public class Mover : MonoBehaviour
         {
             naveMeshAgent.destination = hit.point;
         }
+
+    }
+    //This function will take the global velocity from the navmesh and transfor to local
+    //of this gameobject and set the animation.
+    private void UpdateAnimator()
+    {
+        //Gettin the global velocity from the navMesh
+        Vector3 velocity = naveMeshAgent.velocity;
+
+        //converting to a local varible
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+
+        //creating the speed
+        float speed = localVelocity.z;
+
+        //Passing to the Animator the speed
+        GetComponent<Animator>().SetFloat("forwardSpeed", speed);
 
     }
 }
