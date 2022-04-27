@@ -1045,49 +1045,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 497622622}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &547161874 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2752237228164918171, guid: 22ac25417012d2a43a4901d5aab06ee4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8332850750537739461}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &547161876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547161874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c2a112172dbda4092708a11a22fd02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 573090664}
---- !u!1 &573090660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3315002822948535013, guid: dd85005123fabdc45976df36aff1ee2e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3315002822380687745}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &573090664 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3315002822948535017, guid: dd85005123fabdc45976df36aff1ee2e,
     type: 3}
   m_PrefabInstance: {fileID: 3315002822380687745}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &573090667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573090660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ad5cce36f9c93c4f8320f0b23f30529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &583166223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3840,6 +3803,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 547161876, guid: 22ac25417012d2a43a4901d5aab06ee4, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 573090664}
     - target: {fileID: 1902137197586605696, guid: 22ac25417012d2a43a4901d5aab06ee4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3899,21 +3866,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Follow Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332850750266295956, guid: 22ac25417012d2a43a4901d5aab06ee4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332850750266295956, guid: 22ac25417012d2a43a4901d5aab06ee4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332850750266295956, guid: 22ac25417012d2a43a4901d5aab06ee4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9.24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22ac25417012d2a43a4901d5aab06ee4, type: 3}

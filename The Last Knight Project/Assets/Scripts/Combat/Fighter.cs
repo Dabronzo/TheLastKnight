@@ -1,9 +1,10 @@
 using UnityEngine;
 using RPG.Movements;
+using RPG.GameCore;
 
 namespace RPG.Combat
 {   
-    public class Fighter : MonoBehaviour 
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
 
@@ -24,7 +25,7 @@ namespace RPG.Combat
             //in case that the range is reached or the target is gone, stop moving
             else
             {
-                GetComponent<Mover>().Stop();
+                GetComponent<Mover>().Cancel();
             }
 
         }
@@ -38,7 +39,10 @@ namespace RPG.Combat
         //Attack method takes the target varible and set as the combatTarget sent by the PlayerController
         public void Attack(CombatTarget combatTarget)
         {
-           target = combatTarget.transform;
+            // here the script calls for the ActionScheduler to start the Attack Action
+            GetComponent<ActionScheduler>().StartAction(this);
+
+            target = combatTarget.transform;
         }
 
         public void Cancel()
