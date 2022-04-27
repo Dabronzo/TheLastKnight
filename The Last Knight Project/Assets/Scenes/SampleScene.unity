@@ -88,7 +88,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0ac1f82be5b6f4c41bb2b61e04fc00c1,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1043,6 +1044,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 416864, guid: d66c89601ce96d4419ce36a4dce3c401,
     type: 3}
   m_PrefabInstance: {fileID: 497622622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &547161874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2752237228164918171, guid: 22ac25417012d2a43a4901d5aab06ee4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8332850750537739461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &547161876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547161874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c2a112172dbda4092708a11a22fd02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 573090664}
+--- !u!4 &573090664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3315002822948535017, guid: dd85005123fabdc45976df36aff1ee2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3315002822380687745}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &583166223
 PrefabInstance:
@@ -3671,7 +3697,7 @@ PrefabInstance:
     - target: {fileID: 3315002822948535017, guid: dd85005123fabdc45976df36aff1ee2e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3315002822948535017, guid: dd85005123fabdc45976df36aff1ee2e,
         type: 3}
