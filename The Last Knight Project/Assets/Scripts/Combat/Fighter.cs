@@ -49,6 +49,12 @@ namespace RPG.Combat
         {
             target = null;
         }
+
+        //Animation event to handle the hit
+        void Hit()
+        {
+
+        }
         
     }
 }

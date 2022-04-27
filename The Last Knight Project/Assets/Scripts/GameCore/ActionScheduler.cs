@@ -20,6 +20,7 @@ namespace RPG.GameCore
             if(currentAction != null)
             {
                 //change the action
+                print("canceling" + currentAction);
                 currentAction.Cancel();
             }
             //set the current action
