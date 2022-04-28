@@ -37,8 +37,10 @@ namespace RPG.Controller
                 //Store in a CombatTarget type called "target"
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
 
-                //if there is no target on the object hit by the ray will continue to the next one
-                if (target == null) continue;
+                //Here we check calling the Fighter if the target hit by the raycast is null or is dead
+                //means that we can not attack, returning false will satisfy the if bellow and continue the
+                //foreach to the next itens
+                if (!GetComponent<Fighter>().CanAttack(target)) { continue;}
                 
                 //in the case there is a target and the mouse button was triggered the Attack is called from the Fighter.cs
                 //target will be passed to the Fighter also, so the fighter can interact with the target
