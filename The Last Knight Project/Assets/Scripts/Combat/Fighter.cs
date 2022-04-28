@@ -67,10 +67,10 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
-        //Attack method takes the target varible and set as the combatTarget sent by the PlayerController
         //this is the first thing that happens when a player click on a enemy to attack
+        //the method takes a GameObject to make it generic for playe and AI
         //by changing the "target" from null to something we activate part of the update logics
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             // here the script calls for the ActionScheduler to start the Attack Action
             GetComponent<ActionScheduler>().StartAction(this);
@@ -80,7 +80,7 @@ namespace RPG.Combat
 
         //Method to tell the Player Controller if there is a target and
         //if is not dead returning true in this case.
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
             Health targetToTest = combatTarget.GetComponent<Health>();

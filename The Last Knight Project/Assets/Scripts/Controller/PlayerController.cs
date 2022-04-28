@@ -33,20 +33,21 @@ namespace RPG.Controller
             //Iterating to all the hits from Ray
             foreach (RaycastHit hit in hits)
             {
-                //I'll use the transform as the thing that the foreach is looking for
-                //Store in a CombatTarget type called "target"
+                //This will check for the CombatTarget component, since that only enemies have it
+                //a if statement can be made to avoid player attacking itself
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
+                if (target == null) continue;
 
                 //Here we check calling the Fighter if the target hit by the raycast is null or is dead
                 //means that we can not attack, returning false will satisfy the if bellow and continue the
                 //foreach to the next itens
-                if (!GetComponent<Fighter>().CanAttack(target)) { continue;}
+                if (!GetComponent<Fighter>().CanAttack(target.gameObject)) { continue;}
                 
                 //in the case there is a target and the mouse button was triggered the Attack is called from the Fighter.cs
                 //target will be passed to the Fighter also, so the fighter can interact with the target
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    GetComponent<Fighter>().Attack(target.gameObject);
                 }
                 //this will allow change the mouse cursor if is hoovered on a enemy
                 return true;
