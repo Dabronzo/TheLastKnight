@@ -16,8 +16,7 @@ namespace RPG.Combat
             //if the target is not set by the PlayerController will be null and will skip everything
             if (target == null) return;
 
-            //to call MoveTo and goes in direction of the target
-            if (!GetInRange())
+            if(!GetInRange())
             {
                 GetComponent<Mover>().MoveTo(target.position);
             }

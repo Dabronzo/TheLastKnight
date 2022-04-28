@@ -23,13 +23,21 @@ namespace RPG.Movements
             UpdateAnimator();
         
         }
+        
+        //This method is used to cancel the Combat action and start moving to the new destination
+        public void StartMoveAction(Vector3 destination)
+        {
+            //Starting the Action on the ActionScheduler
+            GetComponent<ActionScheduler>().StartAction(this);
+            MoveTo(destination);
+            
+        }
 
    
         //the actual move on the navmesh public to be called from the PlayerController
         public void MoveTo(Vector3 destination)
         {
-            //Starting the Action on the ActionScheduler
-            GetComponent<ActionScheduler>().StartAction(this);
+            
 
             //because the NavMesh could be set to Stopped by the Stop method
             //first is set as not stopped
