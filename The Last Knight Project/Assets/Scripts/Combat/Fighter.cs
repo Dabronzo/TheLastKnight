@@ -15,7 +15,8 @@ namespace RPG.Combat
         Health target;
 
         //this will be updated in every frame so the game will know always when was the last attack
-        float timeSinceLastAttack = 0;
+        //using Math.infinity to simulate a attack a long a go, so the player can start attacking
+        float timeSinceLastAttack = Mathf.Infinity;
 
         private void Update()
         {

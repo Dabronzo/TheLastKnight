@@ -4,20 +4,25 @@ using UnityEngine;
 using RPG.Movements;
 using RPG.Combat;
 using System;
+using RPG.GameCore;
 
 namespace RPG.Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        // Start is called before the first frame update
+        Health health;
+        
         void Start()
         {
+            health = GetComponent<Health>();
         
         }
 
-        // Update is called once per frame
         void Update()
         {
+            //statement that if the player is dead everything will be disable
+            if (health.IsDead()) return;
+
             //if false will skip this and go to InteractWithMovement
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;

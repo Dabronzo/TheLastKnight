@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.GameCore
 {
     public class Health : MonoBehaviour
     {
@@ -25,7 +25,7 @@ namespace RPG.Combat
             health = Mathf.Max(health - damage, 0);
             if (health == 0)
             {
-                if(isDead) return;
+               
                 DeathTrigger();
             }
 
@@ -33,8 +33,12 @@ namespace RPG.Combat
 
         private void DeathTrigger()
         {
+            if(isDead) return;
+            
             isDead = true;
             GetComponent<Animator>().SetTrigger("death");
+            //this will tell the scheduler to cancel the current action
+            GetComponent<ActionScheduler>().CancelCurrentAction();
         }
     }
 

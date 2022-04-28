@@ -1,4 +1,5 @@
 using UnityEngine;
+using RPG.GameCore;
 
 namespace RPG.Combat
 {

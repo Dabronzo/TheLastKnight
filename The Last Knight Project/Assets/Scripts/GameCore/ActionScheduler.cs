@@ -11,7 +11,7 @@ namespace RPG.GameCore
 
 
         //this method will stop an current action and start the new one
-        //using MonoBehaviour to make as commom parent to Mover and Combat
+        //using IAction as interface to Mover and Combat
         public void StartAction(IAction action)
         {
             //in case the action did not change
@@ -25,6 +25,14 @@ namespace RPG.GameCore
             //set the current action
             currentAction = action;
 
+        }
+
+        //Because Health should be able to let this script knows that the character is dead
+        //so the Scheduler can cancel the action
+        public void CancelCurrentAction()
+        {
+            //setting the current action as null has the effect to cancel 
+            StartAction(null);
         }
     }   
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Combat;
+using RPG.GameCore;
 
 namespace RPG.Controller
 {
@@ -11,17 +12,22 @@ namespace RPG.Controller
         [SerializeField] float chaiseDistance = 5f;
 
         Fighter fighterComponent;
+        Health health;
         GameObject player;
 
         private void Start()
         {
             fighterComponent = GetComponent<Fighter>();
+            health = GetComponent<Health>();
             player = GameObject.FindWithTag("Player");
         }
 
 
         private void Update() 
         {
+            //Cancelling everything if the character is dead
+            if (health.IsDead()) return;
+            
             if(InRangeChaise() && fighterComponent.CanAttack(player))
             {
                fighterComponent.Attack(player);
