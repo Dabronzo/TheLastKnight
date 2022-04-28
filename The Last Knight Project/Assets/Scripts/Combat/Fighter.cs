@@ -10,8 +10,9 @@ namespace RPG.Combat
         
         [SerializeField] float timeBetweenAttacks = 1f;
 
-        //Using a Transform to hold the position of a target
-        Transform target;
+        //Using the Health component as a target, since that if the player is fighting something
+        //it should have a health component
+        Health target;
 
         //this will be updated in every frame so the game will know always when was the last attack
         float timeSinceLastAttack = 0;
@@ -23,9 +24,12 @@ namespace RPG.Combat
             //if the target is not set by the PlayerController will be null and will skip everything
             if (target == null) return;
 
+            //checking if the target is dead and stopping the attack
+            if (target.IsDead()) return;
+
             if(!GetInRange())
             {
-                GetComponent<Mover>().MoveTo(target.position);
+                GetComponent<Mover>().MoveTo(target.transform.position);
             }
 
             //in case that the range is reached or the target is gone, stop moving
@@ -53,7 +57,7 @@ namespace RPG.Combat
         //Method to check if is in range
         private bool GetInRange()
         {
-            return Vector3.Distance(transform.position, target.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
         //Attack method takes the target varible and set as the combatTarget sent by the PlayerController
@@ -62,19 +66,21 @@ namespace RPG.Combat
             // here the script calls for the ActionScheduler to start the Attack Action
             GetComponent<ActionScheduler>().StartAction(this);
 
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<Health>();
         }
 
         public void Cancel()
         {
+            //Stopping the animation attack when is cancelled
+            GetComponent<Animator>().SetTrigger("stopAttack");
             target = null;
         }
 
         //Animation event to handle the hit and cause damage on the right time in the animation
         void Hit()
         {
-            Health healthTarget = target.GetComponent<Health>();
-            healthTarget.TakeDamage(5);  
+           
+            target.TakeDamage(5);  
 
         }
         
