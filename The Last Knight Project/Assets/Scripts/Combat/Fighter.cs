@@ -7,12 +7,19 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
+        
+        [SerializeField] float timeBetweenAttacks = 1f;
 
         //Using a Transform to hold the position of a target
         Transform target;
 
+        //this will be updated in every frame so the game will know always when was the last attack
+        float timeSinceLastAttack = 0;
+
         private void Update()
         {
+            //updating the last attack
+            timeSinceLastAttack += Time.deltaTime;
             //if the target is not set by the PlayerController will be null and will skip everything
             if (target == null) return;
 
@@ -25,8 +32,22 @@ namespace RPG.Combat
             else
             {
                 GetComponent<Mover>().Cancel();
+                AttackAnimationTrigger();
             }
 
+        }
+
+        //Set the trigger to start the attack animation
+        private void AttackAnimationTrigger()
+        {
+            //cooldown effect between attacks
+            if (timeSinceLastAttack > timeBetweenAttacks)
+            {
+                //Damage is taken on the Hit()
+                GetComponent<Animator>().SetTrigger("attack");
+                timeSinceLastAttack = 0;
+            }
+            
         }
 
         //Method to check if is in range
@@ -49,9 +70,11 @@ namespace RPG.Combat
             target = null;
         }
 
-        //Animation event to handle the hit
+        //Animation event to handle the hit and cause damage on the right time in the animation
         void Hit()
         {
+            Health healthTarget = target.GetComponent<Health>();
+            healthTarget.TakeDamage(5);  
 
         }
         
