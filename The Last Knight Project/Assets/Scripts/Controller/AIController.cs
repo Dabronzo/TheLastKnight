@@ -19,6 +19,9 @@ namespace RPG.Controller
         //exist on the scene
         [SerializeField] PatrolPath patrolPath;
 
+        //Dwelling time on the patrol waypoints
+        [SerializeField] float waypointDwellingTime = 2f;
+
         //tolerance of the distance to waypoint
         [SerializeField] float waypointTollerance = 0.5f;
 
@@ -39,6 +42,8 @@ namespace RPG.Controller
         //time that the player was in his interest area
         float timeSinceLastSawPlayer = Mathf.Infinity;
 
+        float timeSinceArrivedWaypoint = Mathf.Infinity;
+
         private void Start()
         {
             fighterComponent = GetComponent<Fighter>();
@@ -50,12 +55,12 @@ namespace RPG.Controller
         }
 
 
-        private void Update() 
+        private void Update()
         {
             //Cancelling everything if the character is dead
             if (health.IsDead()) return;
-            
-            if(InRangeChaise() && fighterComponent.CanAttack(player))
+
+            if (InRangeChaise() && fighterComponent.CanAttack(player))
             {
                 timeSinceLastSawPlayer = 0;
                 AttackBehaivour();
@@ -71,8 +76,14 @@ namespace RPG.Controller
             {
                 PatrolBehaviour();
             }
-            //to update the timeSinceLastSawPlayer
+            //to update the timeSinceLastSawPlayer and timeSinceArrivedWaypoint
+            UpdateTimers();
+        }
+
+        private void UpdateTimers()
+        {
             timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceArrivedWaypoint += Time.deltaTime;
         }
 
         //this method should first create a nestPosition, so the AI can know where to go
@@ -86,28 +97,38 @@ namespace RPG.Controller
             {
                 if (AtWaypoint())
                 {
+                    timeSinceArrivedWaypoint = 0;
                     CycleWaypoint();
                 }
                 nextPosition = GetCurrentWaypoint();
 
             }
-            //fighterComponent.Cancel();
-            //since the StartMoveAction calls the action scheduler that will cancel
-            //the previous behave so don't need to cancel the attack
-            mover.StartMoveAction(nextPosition);
+            //statement to check if the NPC is already enough time at the waypoint
+            if (timeSinceArrivedWaypoint > waypointDwellingTime)
+            {
+                //fighterComponent.Cancel();
+                //since the StartMoveAction calls the action scheduler that will cancel
+                //the previous behave so don't need to cancel the attack
+                mover.StartMoveAction(nextPosition);
+            }
+            
         }
 
+        //Uses the GetWaypoint of patrol path to get which waypoint is it
+        //using the curremnt index known by the NPC
         private Vector3 GetCurrentWaypoint()
         {
             return patrolPath.GetWaypont(currentWaypointIndex);
         }
 
+        //Using the GetNextIndex from patrol path to update the waypoint index to the next one
         private void CycleWaypoint()
         {
             currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
             
         }
 
+        //boolean to check if the NPC is in a tollerable distance to the waypoint
         private bool AtWaypoint()
         {
            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());

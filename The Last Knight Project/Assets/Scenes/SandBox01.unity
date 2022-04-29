@@ -3752,12 +3752,12 @@ PrefabInstance:
     - target: {fileID: 3864061873466361672, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3864061873466361672, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.86
+      value: -4.8208
       objectReference: {fileID: 0}
     - target: {fileID: 3864061873466361672, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
         type: 3}
@@ -3799,10 +3799,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3864061873466361672, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864061873466361672, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864061873466361672, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221527968156019754, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
+        type: 3}
+      propertyPath: m_Speed
+      value: 3.6
+      objectReference: {fileID: 0}
     - target: {fileID: 9162022930487026968, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986,
         type: 3}
       propertyPath: chaiseDistance
-      value: 5
+      value: 8.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33b6e5d9eb5b346438e9d0dc3f1a0986, type: 3}
