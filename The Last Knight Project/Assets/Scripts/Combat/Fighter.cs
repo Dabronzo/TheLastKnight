@@ -10,6 +10,8 @@ namespace RPG.Combat
         
         [SerializeField] float timeBetweenAttacks = 1f;
 
+        [SerializeField] float chaiseSpeed = 5.6f;
+
         //Using the Health component as a target, since that if the player is fighting something
         //it should have a health component
         Health target;
@@ -31,7 +33,8 @@ namespace RPG.Combat
             //if the player is not in range the combat will move the player until the range is reached
             if(!GetInRange())
             {
-                GetComponent<Mover>().MoveTo(target.transform.position);
+                //this is the chaising movement to attack
+                GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             }
 
             //in case that the range is reached or the target is gone, stop moving

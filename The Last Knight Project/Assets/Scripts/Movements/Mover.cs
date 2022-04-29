@@ -10,6 +10,7 @@ namespace RPG.Movements
     {
         NavMeshAgent naveMeshAgent;
         Health health;
+        [SerializeField] float maxSpeed = 5.6f;
 
         void Start()
         {
@@ -32,24 +33,24 @@ namespace RPG.Movements
         }
         
         //This method is used to cancel the Combat action and start moving to the new destination
-        public void StartMoveAction(Vector3 destination)
+        public void StartMoveAction(Vector3 destination, float speedFraction)
         {
             //Starting the Action on the ActionScheduler
             GetComponent<ActionScheduler>().StartAction(this);
-            MoveTo(destination);
+            MoveTo(destination, speedFraction);
             
         }
 
    
         //the actual move on the navmesh public to be called from the PlayerController
-        public void MoveTo(Vector3 destination)
+        public void MoveTo(Vector3 destination, float speedFraction)
         {
             
 
             //because the NavMesh could be set to Stopped by the Stop method
             //first is set as not stopped
             naveMeshAgent.isStopped = false;
-
+            naveMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
             naveMeshAgent.destination = destination;
         }
 

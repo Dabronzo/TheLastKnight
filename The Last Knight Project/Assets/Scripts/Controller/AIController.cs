@@ -25,6 +25,10 @@ namespace RPG.Controller
         //tolerance of the distance to waypoint
         [SerializeField] float waypointTollerance = 0.5f;
 
+        //since that we have the maxSpeed on the mover the patrolfraction will
+        //slower the speed.
+        [SerializeField] float patrolSpeedFraction = 0.2f;
+
         Fighter fighterComponent;
         Health health;
         GameObject player;
@@ -63,7 +67,7 @@ namespace RPG.Controller
             if (InRangeChaise() && fighterComponent.CanAttack(player))
             {
                 timeSinceLastSawPlayer = 0;
-                AttackBehaivour();
+                AttackBehaviour();
 
             }
             //to check the suspicius behaivour
@@ -109,7 +113,7 @@ namespace RPG.Controller
                 //fighterComponent.Cancel();
                 //since the StartMoveAction calls the action scheduler that will cancel
                 //the previous behave so don't need to cancel the attack
-                mover.StartMoveAction(nextPosition);
+                mover.StartMoveAction(nextPosition, patrolSpeedFraction);
             }
             
         }
@@ -140,7 +144,7 @@ namespace RPG.Controller
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
-        private void AttackBehaivour()
+        private void AttackBehaviour()
         {
             fighterComponent.Attack(player);
         }
