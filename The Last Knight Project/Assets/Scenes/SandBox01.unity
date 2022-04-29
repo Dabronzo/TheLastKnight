@@ -1131,7 +1131,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7770492, y: 1}
+    m_SensorSize: {x: 1.7769586, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1715,7 +1715,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7770492, y: 1}
+    m_SensorSize: {x: 1.7769586, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1731,7 +1731,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743360816}
-  m_LocalRotation: {x: 0.0024549754, y: 0.15649629, z: -0.0003889886, w: 0.9876754}
+  m_LocalRotation: {x: 0.0024549756, y: 0.1564968, z: -0.00038898987, w: 0.98767537}
   m_LocalPosition: {x: 15.32, y: 2.07, z: 3.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1990,6 +1990,7 @@ GameObject:
   - component: {fileID: 909538924}
   - component: {fileID: 909538923}
   - component: {fileID: 909538922}
+  - component: {fileID: 909538925}
   m_Layer: 2
   m_Name: Intro Sequence
   m_TagString: Untagged
@@ -2096,6 +2097,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &909538925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909538918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5862d5328c32a0e4a83429b4e9a71d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &910212530
 GameObject:
   m_ObjectHideFlags: 3
@@ -3395,7 +3408,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7770492, y: 1}
+    m_SensorSize: {x: 1.7769586, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

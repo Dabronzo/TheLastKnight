@@ -100,6 +100,8 @@ namespace RPG.Combat
             //Stopping the animation attack when is cancelled
             GetComponent<Animator>().SetTrigger("stopAttack");
             target = null;
+            //canceling the movement towards the target when cancel attack
+            GetComponent<Mover>().Cancel();
         }
 
         //Animation event to handle the hit and cause damage on the right time in the animation
