@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Combat;
 using RPG.GameCore;
 using RPG.Movements;
+using System;
 
 namespace RPG.Controller
 {
@@ -11,12 +12,23 @@ namespace RPG.Controller
     {
         //Varible of chaise distance
         [SerializeField] float chaiseDistance = 5f;
+
         [SerializeField] float suspiciusTime = 5f;
+
+        //to hold the patrolPath and need to be set on Unity because the patrol only
+        //exist on the scene
+        [SerializeField] PatrolPath patrolPath;
+
+        //tolerance of the distance to waypoint
+        [SerializeField] float waypointTollerance = 0.5f;
 
         Fighter fighterComponent;
         Health health;
         GameObject player;
         Mover mover;
+
+        //varible so the NPC remeber the index of the waypoints
+        int currentWaypointIndex = 0;
 
         //to make some sort of state where the AI can do some behaivours
         //The guard behaivour is just when the npc remembers the initial position
@@ -57,18 +69,49 @@ namespace RPG.Controller
             }
             else
             {
-                GuardingBehaivour();
+                PatrolBehaviour();
             }
             //to update the timeSinceLastSawPlayer
             timeSinceLastSawPlayer += Time.deltaTime;
         }
 
-        private void GuardingBehaivour()
+        //this method should first create a nestPosition, so the AI can know where to go
+        //by default will be the guardingPosition
+        //then the following logic: if is AtTheWaypoint(), CycleWaypoint() wlese the NextPosition is GetCurrentWaypoint
+        private void PatrolBehaviour()
         {
+            Vector3 nextPosition = guardingPosition;
+
+            if (patrolPath != null)
+            {
+                if (AtWaypoint())
+                {
+                    CycleWaypoint();
+                }
+                nextPosition = GetCurrentWaypoint();
+
+            }
             //fighterComponent.Cancel();
             //since the StartMoveAction calls the action scheduler that will cancel
             //the previous behave so don't need to cancel the attack
-            mover.StartMoveAction(guardingPosition);
+            mover.StartMoveAction(nextPosition);
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return patrolPath.GetWaypont(currentWaypointIndex);
+        }
+
+        private void CycleWaypoint()
+        {
+            currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
+            
+        }
+
+        private bool AtWaypoint()
+        {
+           float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+           return distanceToWaypoint < waypointTollerance;
         }
 
         private void SuspiciusBehauvour()
