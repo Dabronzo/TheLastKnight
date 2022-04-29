@@ -27,6 +27,7 @@ namespace RPG.Controller
 
         //since that we have the maxSpeed on the mover the patrolfraction will
         //slower the speed.
+        [Range(0,1)]
         [SerializeField] float patrolSpeedFraction = 0.2f;
 
         Fighter fighterComponent;

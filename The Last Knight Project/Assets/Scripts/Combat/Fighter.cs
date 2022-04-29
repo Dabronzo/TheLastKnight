@@ -10,7 +10,6 @@ namespace RPG.Combat
         
         [SerializeField] float timeBetweenAttacks = 1f;
 
-        [SerializeField] float chaiseSpeed = 5.6f;
 
         //Using the Health component as a target, since that if the player is fighting something
         //it should have a health component
